@@ -23,7 +23,7 @@ def get_soup(url,header):
 def main(args):
     parser = argparse.ArgumentParser(description='Scrape Google images')
     # parser.add_argument('-s', '--search', default='eye', type=str, help='search term')
-    parser.add_argument('-i', 'search_file', default=os.path.join(os.getcwd(), 'additional', 'search_file.csv'), type=str, help='image search term file')
+    parser.add_argument('-i', '--search_file', default=os.path.join(os.getcwd(), 'additional', 'search_file.csv'), type=str, help='image search term file')
     parser.add_argument('-n', '--num_images', default=10, type=int, help='number of images to save')
     parser.add_argument('-d', '--directory', default=os.path.join(os.getcwd(), 'images'), type=str, help='save directory')
 
