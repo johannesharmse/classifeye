@@ -44,37 +44,44 @@ def main(args):
             for row in queryreader:
                 img_class = row['class']
                 img_phrase = row['search']
+                row_search = img_phrase.split()
+                row_search = '_'.join(row_search)
                 img_phrase = img_phrase.split()
                 img_phrase = '+'.join(img_phrase)
                 url = "https://www.google.co.in/search?q="+img_phrase+"&source=lnms&tbm=isch"
                 header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
                 soup = get_soup(url, header)
 
-    img_links = []
+                class_save_dir = os.path.join(save_directory, 'img', img_class)
 
-    for a in soup.find_all("div", {"class":"rg_meta"}):
-        img_link = json.loads(a.text)["ou"]
-        img_format = json.loads(a.text)["ity"]
-        img_links.append((img_link, img_format))
+                if not os.path.isdir(class_save_dir):
+                    os.makedirs(class_save_dir)
 
-    for i, (img_link, img_format) in enumerate(img_links[0:max_images]):
-        try:
-            # req = urllib.request.Request(img_link, headers={'User-Agent': header})
+                img_links = []
 
-            with urllib.request.urlopen(img_link) as response:
-                raw_img = response.read()
+                for a in soup.find_all("div", {"class":"rg_meta"}):
+                    img_link = json.loads(a.text)["ou"]
+                    img_format = json.loads(a.text)["ity"]
+                    img_links.append((img_link, img_format))
 
-            if len(img_format) == 0:
-                f = open(os.path.join(save_directory, "img" + "_" + str(i) + ".jpg"), 'wb')
-            else :
-                f = open(os.path.join(save_directory, "img" + "_" + str(i) + "." + img_format), 'wb')
+                for i, (img_link, img_format) in enumerate(img_links[0:max_images]):
+                    try:
+                        # req = urllib.request.Request(img_link, headers={'User-Agent': header})
 
-            f.write(raw_img)
-            f.close()
+                        with urllib.request.urlopen(img_link) as response:
+                            raw_img = response.read()
 
-        except Exception as e:
-            print("could not load : {}".format(img_link))
-            print(e)
+                        if len(img_format) == 0:
+                            f = open(os.path.join(class_save_dir, row_search + "_" + str(i) + ".jpg"), 'wb')
+                        else :
+                            f = open(os.path.join(class_save_dir, row_search + "_" + str(i) + "." + img_format), 'wb')
+
+                        f.write(raw_img)
+                        f.close()
+
+                    except Exception as e:
+                        print("could not load : {}".format(img_link))
+                        print(e)
 
 
 if __name__ == '__main__':
