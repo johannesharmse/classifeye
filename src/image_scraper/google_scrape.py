@@ -7,6 +7,7 @@ import os
 import argparse
 import sys
 import json
+import csv
 
 # adapted from https://gist.github.com/genekogan/ebd77196e4bf0705db51f86431099e57
 
@@ -22,7 +23,7 @@ def get_soup(url,header):
 def main(args):
     parser = argparse.ArgumentParser(description='Scrape Google images')
     # parser.add_argument('-s', '--search', default='eye', type=str, help='search term')
-    parser.add_argument('-i', 'search_file', default=os.path.join(os.getcwd(), 'additional', 'search_file.txt'), type=str, help='image search term file')
+    parser.add_argument('-i', 'search_file', default=os.path.join(os.getcwd(), 'additional', 'search_file.csv'), type=str, help='image search term file')
     parser.add_argument('-n', '--num_images', default=10, type=int, help='number of images to save')
     parser.add_argument('-d', '--directory', default=os.path.join(os.getcwd(), 'images'), type=str, help='save directory')
 
@@ -38,13 +39,16 @@ def main(args):
     if not os.path.isfile(query):
         raise ValueError('Image search term file does not exist. Please specify an existing file.')
     else:
-        
-
-    query = query.split()
-    query = '+'.join(query)
-    url = "https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
-    header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
-    soup = get_soup(url, header)
+        with open(query, 'rb') as csvfile:
+            queryreader = csv.DictReader(csvfile)
+            for row in queryreader:
+                img_class = row['class']
+                img_phrase = row['search']
+                img_phrase = img_phrase.split()
+                img_phrase = '+'.join(img_phrase)
+                url = "https://www.google.co.in/search?q="+img_phrase+"&source=lnms&tbm=isch"
+                header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+                soup = get_soup(url, header)
 
     img_links = []
 
