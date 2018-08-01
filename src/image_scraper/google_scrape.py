@@ -21,17 +21,24 @@ def get_soup(url,header):
 
 def main(args):
     parser = argparse.ArgumentParser(description='Scrape Google images')
-    parser.add_argument('-s', '--search', default='eye', type=str, help='search term')
+    # parser.add_argument('-s', '--search', default='eye', type=str, help='search term')
+    parser.add_argument('-i', 'search_file', default=os.path.join(os.getcwd(), 'additional', 'search_file.txt'), type=str, help='image search term file')
     parser.add_argument('-n', '--num_images', default=10, type=int, help='number of images to save')
     parser.add_argument('-d', '--directory', default=os.path.join(os.getcwd(), 'images'), type=str, help='save directory')
 
     args = parser.parse_args()
-    query = args.search
+    # query = args.search
+    query = args.search_file
     max_images = args.num_images
     save_directory = args.directory
 
     if not os.path.exists(save_directory):
         os.makedirs(save_directory)
+
+    if not os.path.isfile(query):
+        raise ValueError('Image search term file does not exist. Please specify an existing file.')
+    else:
+        
 
     query = query.split()
     query = '+'.join(query)
