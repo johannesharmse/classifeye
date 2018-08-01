@@ -39,7 +39,7 @@ def main(args):
     if not os.path.isfile(query):
         raise ValueError('Image search term file does not exist. Please specify an existing file.')
     else:
-        with open(query, 'rb') as csvfile:
+        with open(query) as csvfile:
             queryreader = csv.DictReader(csvfile)
             for row in queryreader:
                 img_class = row['class']
