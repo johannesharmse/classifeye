@@ -11,10 +11,11 @@ import csv
 
 # adapted from https://gist.github.com/genekogan/ebd77196e4bf0705db51f86431099e57
 
+# CHANGES MADE:
 # changed to accommodate python 3 (instead of 2)
 # cleaned up
 # create directory if not exist
-
+# download multiple search terms into subdirectories - intended of TF training purposes
 
 def get_soup(url,header):
     return BeautifulSoup(urllib.request.urlopen(urllib.request.Request(url,headers=header)),'html.parser')
