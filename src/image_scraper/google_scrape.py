@@ -1,8 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
-import re
 import urllib.request
-# html = urlopen("http://www.google.com/")
 import os
 import argparse
 import sys
@@ -67,8 +64,6 @@ def main(args):
 
                 for i, (img_link, img_format) in enumerate(img_links[0:max_images]):
                     try:
-                        # req = urllib.request.Request(img_link, headers={'User-Agent': header})
-
                         with urllib.request.urlopen(img_link) as response:
                             raw_img = response.read()
 
