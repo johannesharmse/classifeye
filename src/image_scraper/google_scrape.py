@@ -52,7 +52,7 @@ def main(args):
                 header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
                 soup = get_soup(url, header)
 
-                class_save_dir = os.path.join(save_directory, 'img', img_class)
+                class_save_dir = os.path.join(save_directory, img_class)
 
                 if not os.path.isdir(class_save_dir):
                     os.makedirs(class_save_dir)
