@@ -105,3 +105,6 @@ venv.bak/
 
 # training data
 additional/images/
+
+# model
+additional/model/

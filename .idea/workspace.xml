@@ -19,12 +19,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -41,7 +41,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/image_scraper/google_scrape.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="169">
@@ -50,6 +50,13 @@
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/train/retrain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-17156" />
           </provider>
         </entry>
       </file>
@@ -93,6 +100,12 @@
               <item name="classifeye" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="image_scraper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="classifeye" type="b2602c69:ProjectViewProjectNode" />
+              <item name="classifeye" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="train" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -164,6 +177,11 @@
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/train/retrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17156" />
       </provider>
     </entry>
   </component>
